@@ -8,7 +8,8 @@ public class UzivatelskeRozhrani {
         EvidencePojistenych evidencePojistenych = new EvidencePojistenych();
         Databaze databaze = new Databaze();
         String volba = "";
-        //Hlavní cyklus
+        // Hlavní cyklus
+        // Pokud uživatel zadá číslo 4, vyskočí z cyklu a ukončí program
         while (!volba.equals("4")) {
             evidencePojistenych.vypisUvodniObrazovky();
             System.out.println();
@@ -19,15 +20,15 @@ public class UzivatelskeRozhrani {
             System.out.println("4 - Konec");
             volba = scanner.nextLine();
             System.out.println();
-            // reakce na volbu
             switch (volba) {
                 case "1":
-                    evidencePojistenych.pridejPojistence();
+                    evidencePojistenych.pridejPojisteneho();
                     break;
                 case "2":
+                    evidencePojistenych.vypisVsechnyPojistenych();
                     break;
                 case "3":
-                    evidencePojistenych.vyhledejPojistence();
+                    evidencePojistenych.vyhledejPojisteneho();
                     break;
                 case "4":
                     break;

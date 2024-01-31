@@ -1,12 +1,37 @@
 package itnetwork;
 
+/**
+ * Pojištěný
+ */
 public class Pojistenec {
 
+    /**
+     * Jméno pojištěného
+     */
     private String jmeno;
+
+    /**
+     * Příjmení pojištěného
+     */
     private String prijmeni;
+
+    /**
+     * Telefoní číslo pojištěného
+     */
     private String telefoniCislo;
+
+    /**
+     * Věk pojištěného
+     */
     private int vek;
 
+    /**
+     * Kokstruktor
+     * @param jmeno
+     * @param prijmeni
+     * @param telefoniCislo
+     * @param vek
+     */
     public Pojistenec(String jmeno, String prijmeni, String telefoniCislo, int vek) {
         this.jmeno = jmeno;
         this.prijmeni = prijmeni;
@@ -25,39 +50,6 @@ public class Pojistenec {
         return prijmeni;
     }
 
-    /**
-    Getter a setter pro prijmeni
-    */
-    public void setPrijmeni(String prijmeni) {
-        this.prijmeni = prijmeni;
-    }
-
-    public void setJmeno(String jmeno) {
-        this.jmeno = jmeno;
-    }
-
-    /**
-    Getter a setter pro telefoni cislo
-     */
-    public String getTelefoniCislo() {
-        return telefoniCislo;
-    }
-
-    public void setTelefoniCislo(String telefoniCislo) {
-        this.telefoniCislo = telefoniCislo;
-    }
-
-    /**
-     * Geter a setter pro vek
-     * @return
-     */
-    public int getVek() {
-        return vek;
-    }
-
-    public void setVek(int vek) {
-        this.vek = vek;
-    }
 
     @Override
     public String toString() {
