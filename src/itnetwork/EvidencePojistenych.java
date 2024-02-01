@@ -54,6 +54,21 @@ public class EvidencePojistenych {
     }
 
     /**
+     * Naparsuje věk uživatele
+     * @return Naparsovaný věk uživatele ze vstupu
+     */
+    private int naparsujVek() {
+        while (true) {
+            try {
+                return Integer.parseInt(scanner.nextLine().trim());
+            } catch (Exception ex) {
+                System.out.println();
+                System.out.println("Nesprávně zadaný věk! Prosím, zadejte znovu.");
+            }
+        }
+    }
+
+    /**
      * Přidání pojištěného do databáze
      */
     public void pridejPojisteneho() {
@@ -64,7 +79,7 @@ public class EvidencePojistenych {
         System.out.println("Zadejte telefoní číslo pojistného: ");
         String telefoniCislo = scanner.nextLine().trim();
         System.out.println("Zadejte věk pojistného: ");
-        int vek = Integer.parseInt(scanner.nextLine().trim());
+        int vek = naparsujVek();
         databaze.pridejPojisteneho(jmeno, prijmeni, telefoniCislo, vek);
         System.out.println();
         System.out.println("Data byla úspěšně uložena. Pokračujte libovolnou klávesou...");
@@ -91,6 +106,7 @@ public class EvidencePojistenych {
                System.out.println();
            }
        } else {
+           System.out.println();
            System.out.println("Nebyly nalezeni žádní pojištěnci.");
        }
    }
