@@ -7,6 +7,9 @@ import java.util.ArrayList;
  */
 public class Databaze {
 
+    /**
+     * Záznamy pojištěných
+     */
     private ArrayList<Pojistenec> pojistenci = new ArrayList<>();
 
     /**

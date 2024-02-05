@@ -50,7 +50,10 @@ public class Pojistenec {
         return prijmeni;
     }
 
-
+    /**
+     * Vrací textovou reprezentaci uživatele
+     * @return textová reprezentace uživatele zadaného do aplikace
+     */
     @Override
     public String toString() {
         return " [Jméno] " + jmeno + "   [Příjmení] " + prijmeni + "   [Telefoní číslo] " + telefoniCislo + "   [Věk] " + vek;
