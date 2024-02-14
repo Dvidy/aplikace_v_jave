@@ -3,10 +3,9 @@ package itnetwork;
 import java.util.Scanner;
 
 public class UzivatelskeRozhrani {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         EvidencePojistenych evidencePojistenych = new EvidencePojistenych();
-        Databaze databaze = new Databaze();
         String volba = "";
         // Hlavní cyklus
         // Pokud uživatel zadá číslo 4, vyskočí z cyklu a ukončí program

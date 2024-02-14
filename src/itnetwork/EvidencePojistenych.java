@@ -26,31 +26,44 @@ public class EvidencePojistenych {
     }
 
     /**
+     * Hledá jméno
      * @return Jméno zadané uživatelem
      */
     private String najdiJmeno() {
         System.out.println("Zadejte jméno pojištěného: ");
-        while (true) {
-            try {
-                return scanner.nextLine();
-            } catch (Exception ex) {
-                System.out.println("Nesprávně zadané jméno, zadejte prosím znovu.");
-            }
-        }
+        return scanner.nextLine();
     }
 
     /**
+     * Hledá příjmení
      * @return Přijmení zadané uživatelem
      */
     private String najdiPrijmeni() {
         System.out.println("Zadejte příjmení pojištěného: ");
-        while (true) {
-            try {
-                return scanner.nextLine();
-            } catch (Exception ex) {
-                System.out.println("Nesprávně zadané přijmení, zadejte prosím znovu.");
+        return scanner.nextLine();
+    }
+
+    /**
+     * Zkontroluje a přidá telefonní číslo pojistného
+     * @return Telefonní číslo, pokud bylo zadáno správně
+     */
+    private String pridejTelefoniCislo() {
+        String cislo = null;
+        boolean validniCislo = false;
+
+        while (!validniCislo) {
+            System.out.println("Zadejte své telefoní číslo: ");
+            cislo = scanner.nextLine().trim();
+
+            // Zkontolujeme délku čísla
+            if (cislo.length() >= 9 && cislo.length() <= 13) {
+                validniCislo = true;
+            } else {
+                System.out.println("Telefonní číslo musí mít alespoň 9 znaků a nesmí být delší než 13 znaků.");
+                System.out.println();
             }
         }
+        return cislo;
     }
 
     /**
@@ -60,8 +73,15 @@ public class EvidencePojistenych {
     private int naparsujVek() {
         while (true) {
             try {
-                return Integer.parseInt(scanner.nextLine().trim());
-            } catch (Exception ex) {
+                System.out.println("Zadejte věk pojistného: ");
+                int vek = Integer.parseInt(scanner.nextLine().trim());
+                if (vek > 0 && vek <= 130) { // Kontrola, zda věk nepřekračuje 130 let
+                    return vek;
+                } else {
+                    System.out.println("Zadaný věk musí být v rozmezí 0 až 130. Prosím, zadejte věk znovu.");
+                    System.out.println();
+                }
+            } catch (NumberFormatException ex) {
                 System.out.println();
                 System.out.println("Nesprávně zadaný věk! Prosím, zadejte znovu.");
             }
@@ -76,16 +96,13 @@ public class EvidencePojistenych {
         String jmeno = scanner.nextLine().trim();
         System.out.println("Zadejte přijmení pojistného: ");
         String prijmeni = scanner.nextLine().trim();
-        System.out.println("Zadejte telefoní číslo pojistného: ");
-        String telefoniCislo = scanner.nextLine().trim();
-        System.out.println("Zadejte věk pojistného: ");
+        // Zkontoluje a přidá telefoní číslo pojištěného
+        String telefoniCislo = String.valueOf(pridejTelefoniCislo());
+        // Naparsuje, zkontroluje a přidá věk pojištěného
         int vek = naparsujVek();
         databaze.pridejPojisteneho(jmeno, prijmeni, telefoniCislo, vek);
-        System.out.println();
-        System.out.println("Data byla úspěšně uložena. Pokračujte libovolnou klávesou...");
-        System.out.println();
-
     }
+
 
     /**
      * Vyhledá pojištěného

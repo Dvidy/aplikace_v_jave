@@ -10,7 +10,7 @@ public class Databaze {
     /**
      * Záznamy pojištěných
      */
-    private ArrayList<Pojistenec> pojistenci = new ArrayList<>();
+    private ArrayList<Pojistenec> pojistenci;
 
     /**
      * Konstruktor
@@ -51,7 +51,6 @@ public class Databaze {
      * Vypíše všechny uživatele
      * @return Kolekce nalezených pojištěných
      */
-
     public ArrayList<Pojistenec> vypisPojistenych() {
          ArrayList<Pojistenec> nalezeni = new ArrayList<>();
          for (Pojistenec pojistenec : pojistenci) {
