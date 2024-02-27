@@ -1,1 +1,1 @@
-# projektKeZkousce
+# Projekt k zvěrečné zkoušce. 
