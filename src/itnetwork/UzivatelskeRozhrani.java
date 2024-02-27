@@ -3,7 +3,7 @@ package itnetwork;
 import java.util.Scanner;
 
 public class UzivatelskeRozhrani {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         EvidencePojistenych evidencePojistenych = new EvidencePojistenych();
         String volba = "";

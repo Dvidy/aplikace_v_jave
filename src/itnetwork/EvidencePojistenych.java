@@ -26,21 +26,29 @@ public class EvidencePojistenych {
     }
 
     /**
-     * Hledá jméno
+     * Zkontroluje zda je zadáno jméno uživatele
      * @return Jméno zadané uživatelem
      */
-    private String najdiJmeno() {
-        System.out.println("Zadejte jméno pojištěného: ");
-        return scanner.nextLine();
+    private String zkontrolujJmeno() {
+        String jmeno;
+        do {
+            System.out.println("Zadejte jméno pojištěného: ");
+            jmeno = scanner.nextLine().trim();
+        } while (jmeno.isEmpty());
+        return jmeno;
     }
 
     /**
-     * Hledá příjmení
+     * Zkontroluje zda je zadáno přijmení
      * @return Přijmení zadané uživatelem
      */
-    private String najdiPrijmeni() {
-        System.out.println("Zadejte příjmení pojištěného: ");
-        return scanner.nextLine();
+    private String zkontrolujPrijmeni() {
+        String prijmeni;
+        do {
+            System.out.println("Zadejte příjmení pojištěného: ");
+            prijmeni = scanner.nextLine().trim();
+        } while (prijmeni.isEmpty());
+        return prijmeni;
     }
 
     /**
@@ -55,7 +63,7 @@ public class EvidencePojistenych {
             System.out.println("Zadejte své telefoní číslo: ");
             cislo = scanner.nextLine().trim();
 
-            // Zkontolujeme délku čísla
+            // Zkontoluje délku čísla
             if (cislo.length() >= 9 && cislo.length() <= 13) {
                 validniCislo = true;
             } else {
@@ -67,7 +75,7 @@ public class EvidencePojistenych {
     }
 
     /**
-     * Naparsuje věk uživatele
+     * Naparsuje věk uživatele a zkontroluje
      * @return Naparsovaný věk uživatele ze vstupu
      */
     private int naparsujVek() {
@@ -75,7 +83,8 @@ public class EvidencePojistenych {
             try {
                 System.out.println("Zadejte věk pojistného: ");
                 int vek = Integer.parseInt(scanner.nextLine().trim());
-                if (vek > 0 && vek <= 130) { // Kontrola, zda věk nepřekračuje 130 let
+                // Kontrola, zda věk nepřekračuje 130 let nebo zda věk není záporný
+                if (vek > 0 && vek <= 130) {
                     return vek;
                 } else {
                     System.out.println("Zadaný věk musí být v rozmezí 0 až 130. Prosím, zadejte věk znovu.");
@@ -92,12 +101,11 @@ public class EvidencePojistenych {
      * Přidání pojištěného do databáze
      */
     public void pridejPojisteneho() {
-        System.out.println("Zadejte jméno pojistného: ");
-        String jmeno = scanner.nextLine().trim();
-        System.out.println("Zadejte přijmení pojistného: ");
-        String prijmeni = scanner.nextLine().trim();
+        // Zkontroluje zda uživatel zadal jméno a přijmení
+        String jmeno = zkontrolujJmeno();
+        String prijmeni = zkontrolujPrijmeni();
         // Zkontoluje a přidá telefoní číslo pojištěného
-        String telefoniCislo = String.valueOf(pridejTelefoniCislo());
+        String telefoniCislo = pridejTelefoniCislo();
         // Naparsuje, zkontroluje a přidá věk pojištěného
         int vek = naparsujVek();
         databaze.pridejPojisteneho(jmeno, prijmeni, telefoniCislo, vek);
@@ -108,9 +116,9 @@ public class EvidencePojistenych {
      * Vyhledá pojištěného
      */
    public void vyhledejPojisteneho() {
-       // Zadání jména a příjmení uživatelem
-       String jmeno = najdiJmeno();
-       String prijmeni = najdiPrijmeni();
+       // Zadání jména a příjmení uživatelem + kontrola, zda uživatel zadala jméno i přijmení
+       String jmeno = zkontrolujJmeno();
+       String prijmeni = zkontrolujPrijmeni();
        // Vyhledá konkrétního pojištěného
        ArrayList<Pojistenec> pojistenci = databaze.najdiPojisteneho(jmeno, prijmeni);
        // Vypsání konkrétního pojištěného
@@ -132,9 +140,13 @@ public class EvidencePojistenych {
      * Vypíše všchny uživatele, co jsou v databázi
      */
    public void vypisVsechnyPojistenych() {
-       ArrayList<Pojistenec> pojistenci = databaze.vypisPojistenych();
-       for (int i = 0; i < pojistenci.size(); i++) {
-           System.out.println(pojistenci.get(i));
+       ArrayList<Pojistenec> pojistenci = databaze.getPojistenci();
+       if (pojistenci.isEmpty()) {
+           System.out.println("Databáze je prázdná");
+       } else {
+           for (int i = 0; i < pojistenci.size(); i++) {
+               System.out.println(pojistenci.get(i));
+           }
        }
            System.out.println();
            System.out.println("Pokračujte libovolnou klávesou...");

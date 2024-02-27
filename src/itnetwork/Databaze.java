@@ -51,11 +51,7 @@ public class Databaze {
      * Vypíše všechny uživatele
      * @return Kolekce nalezených pojištěných
      */
-    public ArrayList<Pojistenec> vypisPojistenych() {
-         ArrayList<Pojistenec> nalezeni = new ArrayList<>();
-         for (Pojistenec pojistenec : pojistenci) {
-           nalezeni.add(pojistenec);
-         }
-         return nalezeni;
+    public ArrayList<Pojistenec> getPojistenci() {
+         return pojistenci;
     }
 }
