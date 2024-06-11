@@ -1,1 +1,1 @@
-# Projekt k zvěrečné zkoušce. 
+# Jednoduchá konzolová aplikace v Javě
